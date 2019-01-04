@@ -4,7 +4,7 @@ const io = require('socket.io')(3000);
 
 let counter = 0;
 let n = 0;
-// let letter = 'A';
+let letter = 'A';
 
 io.on('connection', (socket) => {
   socket.on('hi', (payload) => {
@@ -48,7 +48,7 @@ letters.on('connection', (socket) => {
   });
   
   socket.on('next-letter', () => {
-      let letter = 'A';
+    //   let letter = 'A';
       if(n > 26) {
           n = 0;
       }
@@ -58,8 +58,16 @@ letters.on('connection', (socket) => {
       socket.broadcast.emit('letter', letter)
       n++;
     // Only connections in the 'lowercase' room inside of letters can hear this
-    let newLetter = letter.toLowerCase();
-    socket.in('lowercase').emit('_letter', newLetter);
+
+    
+    socket.in('lowercase').emit('_letter', returnALetter(letter));
 });
 
 });
+
+function returnALetter (letter) {
+    let newLetter = letter.toLowerCase();
+    return newLetter;
+}
+
+module.exports = {returnALetter};

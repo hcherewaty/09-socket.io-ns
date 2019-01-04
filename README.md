@@ -5,7 +5,7 @@
 
 ### Author: Heather Cherewaty 
 
-### Collaborated with:  Michael George, & Becca Lee
+### Collaborated with:  Michael George & Becca Lee
 
 ### Links and Resources
 [![Build Status](https://www.travis-ci.com/hcherewaty/09-socket.io-ns.svg?branch=master)](https://www.travis-ci.com/hcherewaty/09-socket.io-ns)
@@ -15,8 +15,9 @@
 
 
 ### Modules
-#### `chatroom.js`
+#### `app.js` & `server.js`
 ##### Exported Values and Methods
+* Emits from numbers and letters namespaces and rooms.
 
 ### Setup
 #### `.env` requirements
@@ -26,11 +27,10 @@
 #### Running the app
 * `npm start`
 * Endpoint: `/`
-  * Returns TCP server chatroom.
+  * Returns socket.IO event information for numbers and letters namespace to react app.
 
 
 #### Tests
 * npm test (runs unit tests)
 * npm run lint (runs linter tests)
-* tests 
 
