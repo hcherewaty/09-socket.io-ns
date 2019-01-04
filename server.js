@@ -3,6 +3,7 @@
 const io = require('socket.io')(3000);
 
 let counter = 0;
+let n = 0;
 // let letter = 'A';
 
 io.on('connection', (socket) => {
@@ -48,17 +49,14 @@ letters.on('connection', (socket) => {
   
   socket.on('next-letter', () => {
       let letter = 'A';
-      let n = 0;
       if(n > 26) {
           n = 0;
       }
-      if(n <= 26) {
-        letter = String.fromCharCode(65 + n);
-        n++;
-      }
+    
+      letter = String.fromCharCode(65 + n);
       
       socket.broadcast.emit('letter', letter)
-
+      n++;
     // Only connections in the 'lowercase' room inside of letters can hear this
     let newLetter = letter.toLowerCase();
     socket.in('lowercase').emit('_letter', newLetter);
